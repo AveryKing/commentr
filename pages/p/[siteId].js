@@ -1,14 +1,14 @@
 import {useRouter} from 'next/router';
 import {useEffect, useRef, useState} from 'react';
 import {Box, FormControl, FormLabel, Input, Button} from '@chakra-ui/react'
-import { getAllFeedback, getAllSites } from '@/lib/db-admin';
+import {getAllFeedback, getAllSites} from '@/lib/db-admin';
 import {useAuth} from '@/lib/auth';
 import {createFeedback} from '@/lib/db';
 import Feedback from "@/components/Feedback";
 
 export async function getStaticProps(context) {
     const siteId = context.params.siteId
-    const { feedback } = await getAllFeedback(siteId)
+    const {feedback} = await getAllFeedback(siteId)
 
     return {
         props: {
@@ -19,7 +19,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    const { sites } = await getAllSites()
+    const {sites} = await getAllSites()
     const paths = sites.map((site) => ({
         params: {
             siteId: site.id.toString(),
@@ -67,7 +67,7 @@ export default function FeedbackPage({initialFeedback}) {
             width='full'
             maxWidth='700px'
             margin='0 auto'
-            >
+        >
             {auth.user && (
                 <Box as='form' onSubmit={onSubmit}>
                     <FormControl my={8}>
@@ -80,7 +80,8 @@ export default function FeedbackPage({initialFeedback}) {
                 </Box>
             )}
             {initialFeedback && initialFeedback.map((feedback) => (
-                <Feedback key={feedback.id} {...feedback} />
+                <Feedback key={feedback.id || new Date().getTime().toString()}
+                          {...feedback} />
             ))}
         </Box>
     )
