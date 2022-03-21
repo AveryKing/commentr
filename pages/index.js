@@ -1,4 +1,5 @@
 import {useAuth} from '../lib/auth';
+import {Button} from "@chakra-ui/react";
 
 export default function Index() {
     const auth = useAuth();
@@ -12,12 +13,12 @@ export default function Index() {
         </div>
     ) : (
         <>
-            <button onClick={(e) => auth.signInWithGithub()}>
+            <Button onClick={(e) => auth.signInWithGithub()}>
                 Sign in With GitHub
-            </button>
-            <button onClick={(e) => auth.signInWithGoogle()}>
+            </Button>
+            <Button onClick={(e) => auth.signInWithGoogle()}>
                 Sign in With Google
-            </button>
+            </Button>
 
         </>
 
