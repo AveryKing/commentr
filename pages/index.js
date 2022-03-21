@@ -1,6 +1,6 @@
 import {useAuth} from '../lib/auth';
 
-export default const Index = () => {
+export default function Index () {
   const auth = useAuth();
 
   return auth.user ? (
