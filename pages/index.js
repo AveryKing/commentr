@@ -1,4 +1,4 @@
-import {useAuth} from '../lib/auth';
+import {useAuth} from '@/lib/auth';
 import {Button} from "@chakra-ui/react";
 
 export default function Index() {
